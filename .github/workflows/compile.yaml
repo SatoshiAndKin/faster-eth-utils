@@ -36,7 +36,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: "3.15"
           cache: pip
           cache-dependency-path: |
             setup.py
@@ -56,6 +56,16 @@ jobs:
           MYPYC_STRICT_DUNDER_TYPING: 1
         run: pip install .
           
+      - name: Verify installed Python 3.15 extension
+        run: |
+          cd "$RUNNER_TEMP"
+          python - <<'PY'
+          from importlib.machinery import ExtensionFileLoader
+          import faster_eth_utils.address as module
+          assert isinstance(module.__loader__, ExtensionFileLoader), module.__file__
+          print(module.__file__)
+          PY
+
       - name: Normalize C files for diffchecking
         # This makes it much easier to diffcheck changes in the C files
         run: |

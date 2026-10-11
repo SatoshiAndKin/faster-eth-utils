@@ -57,7 +57,7 @@ if not skip_mypyc:
         strict_dunder_typing=True,
     )
 
-MYPY_REQUIREMENT = "mypy==2.1.0"
+MYPY_REQUIREMENT = "mypy==2.4.0"
 PYTEST_REQUIREMENT = "pytest>=7.0.0"
 
 
@@ -118,7 +118,7 @@ setup(
     },
     include_package_data=True,
     install_requires=[
-        "cchecksum==0.4.4",
+        "cchecksum==0.4.5",
         "eth-hash>=0.3.1",
         "eth-typing==5.2.1",
         "eth-utils==5.3.1",
@@ -146,6 +146,7 @@ setup(
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: 3.14",
+        "Programming Language :: Python :: 3.15",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
 )
