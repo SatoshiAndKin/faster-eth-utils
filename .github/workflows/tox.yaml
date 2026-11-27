@@ -52,6 +52,8 @@ jobs:
     env:
       TOX_RECREATE_FLAG: ${{ github.event_name == 'schedule' && '-r' || '' }}
       IS_UBUNTU_32BIT: ${{ matrix.os == 'ubuntu-latest' && matrix.architecture == 'x86' }}
+      PIP_CONSTRAINT: ${{ matrix.pyversion == '3.13t' && format('{0}/.github/constraints-py313t.txt', github.workspace) || '' }}
+      PIP_BUILD_CONSTRAINT: ${{ matrix.pyversion == '3.13t' && format('{0}/.github/constraints-py313t.txt', github.workspace) || '' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v6
