@@ -51,6 +51,8 @@ jobs:
     needs:
     - ci_changes
     if: ${{ needs.ci_changes.outputs.run_validation == 'true' }}
+    env:
+      PYTHONHASHSEED: '0'
   ci_gate:
     name: CI (compile.yaml)
     if: ${{ !cancelled() }}
