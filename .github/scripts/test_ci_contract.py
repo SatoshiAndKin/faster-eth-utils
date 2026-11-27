@@ -2,8 +2,14 @@ import io
 import json
 import unittest
 
-from ci_changes import changed_files, needs_validation, path_match
-from ci_gate import verify
+from ci_changes import (
+    changed_files,
+    needs_validation,
+    path_match,
+)
+from ci_gate import (
+    verify,
+)
 
 
 class CIContractTests(unittest.TestCase):

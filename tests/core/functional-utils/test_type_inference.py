@@ -1,4 +1,7 @@
 import pytest
+from pathlib import (
+    Path,
+)
 import sys
 
 from mypy import (
@@ -6,7 +9,7 @@ from mypy import (
 )
 
 MYPY_ARGS = ["--ignore-missing-imports", "--disable-error-code=unused-ignore"]
-FIXTURE_DIR = "fixtures/mypy/"
+FIXTURE_DIR = str(Path(__file__).resolve().parents[3] / "fixtures" / "mypy") + "/"
 
 
 def fixture_dir(val: str):
@@ -21,6 +24,8 @@ def check_mypy_run(
 ) -> None:
     """Helper to run mypy and check the output."""
     out, err, returncode = api.run(cmd_line)
+    # Mypy prints paths inside its working directory as relative paths.
+    expected_out = expected_out.replace(str(Path.cwd()) + "/", "")
     assert out == expected_out, err
     assert err == expected_err, out
     assert returncode == expected_returncode, returncode
