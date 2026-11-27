@@ -1,0 +1,5 @@
+# CPython 3.13t compatibility only; other matrix legs use current dependencies.
+# Pydantic 2.12.3 uses the last published cp313t pydantic-core wheel (2.41.4).
+# Hypothesis 6.156+ uses a Rust ABI that does not support CPython 3.13t.
+pydantic==2.12.3
+hypothesis<6.156
